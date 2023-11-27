@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Photo Detail{% endblock title %}
+
+
+{% block contents %}
+<br>
+<div class="container">
+    <div class="container pp-section">
+        <div class="h3 font-weight-normal" id="titleAndImage">
+            <h2>{{ object.title }}</h2>
+            <br>
+            <p><img src="{{ object.image1.url }}" class="img-fluid" alt="{{ object.title }}">
+            </p>
+
+            {% if object.image2 %}
+            <p><img src="{{ object.image2.url }}" class="img-fluid" alt="{{ object.title }}">
+            </p>
+            {% endif %}
+
+            {% if object.image3 %}
+            <p><img src="{{ object.image3.url }}" class="img-fluid" alt="{{ object.title }}"></p>
+            {% endif %}
+        </div>
+
+        <div class="row mt-5" id="sidebarAndComment">
+            <div class="col-md-3" id="sidebar">
+                <div class="h5">Category</div>
+                <p><a class="mr-1 badge badge-primary" href="{% url 'photo:photos_cat' category=object.category.id %}"
+                        style="text-decoration: none;">
+                        {{ object.category.title }}
+                    </a>
+                </p>
+
+                <div class="h5">Tags</div>
+                <div class="mb-4">
+                    {% if object.tag1 %}
+                    <a class="mr-1 badge badge-secondary" href="{% url 'photo:tags_cat' tag=object.tag1.id %}"
+                        style="text-decoration: none;">
+                        {{ object.tag1.title }}
+                    </a>
+                    {% endif %}
+
+                    {% if object.tag2 %}
+                    <a class="mr-1 badge badge-success" href="{% url 'photo:tags_cat' tag=object.tag2.id %}"
+                        style="text-decoration: none;">
+                        {{ object.tag2.title }}
+                    </a>
+                    {% endif %}
+
+                    {% if object.tag3 %}
+                    <a class="mr-1 badge badge-danger" href="{% url 'photo:tags_cat' tag=object.tag3.id %}"
+                        style="text-decoration: none;">
+                        {{ object.tag3.title }}
+                    </a>
+                    {% endif %}
+
+                    {% if object.tag4 %}
+                    <a class="mr-1 badge badge-success" href="{% url 'photo:tags_cat' tag=object.tag4.id %}"
+                        style="text-decoration: none;">
+                        {{ object.tag4.title }}
+                    </a>
+                    {% endif %}
+
+                    {% if object.tag5 %}
+                    <a class="mr-1 badge badge-success" href="{% url 'photo:tags_cat' tag=object.tag5.id %}"
+                        style="text-decoration: none;">
+                        {{ object.tag5.title }}
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="h5 pt-4">User</div>
+                <p><a class="mr-1 badge badge-dark" href="{% url 'photo:user_list' user=object.user.id %}"
+                        style="text-decoration: none;">
+                        {{ object.user.username }}
+                    </a></p>
+
+                <div class="h5 pt-4">Posted At</div>
+                <p>{{ object.posted_at }}</p>
+            </div>
+
+            <div class="col-md-9">
+                <p style="white-space: pre-line;">{{ object.comment }}</p>
+            </div>
+        </div>
+
+        {% if request.user == object.user %}
+        <br>
+        <hr>
+        <div class="container text-center mt-3">
+            <form method="POST" style="display: inline;">
+                <a href="{% url 'photo:photo_delete' object.pk %}"
+                    class="btn btn-primary my-2">削除する</a>
+            </form>
+        </div>
+        {% endif %}
+
+    </div>
+    <div class="pp-section"></div>
+</div>
+{% endblock %}

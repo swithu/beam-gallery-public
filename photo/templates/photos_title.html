@@ -1,0 +1,55 @@
+{% load static %}
+
+<style>
+  .btn-gentle {
+    background-color: #e0e0e0;
+    /* Set a gentle background color */
+    color: #333;
+    /* Set a darker text color */
+    border-color: #ccc;
+    /* Set a border color */
+    transition: box-shadow 0.3s ease;
+    /* Add a smooth transition effect on box-shadow */
+  }
+
+  .btn-gentle:hover {
+    background-color: #d0d0d0;
+    /* Set a slightly darker background color on hover */
+    color: #555;
+    /* Set a slightly darker text color on hover */
+    border-color: #bbb;
+    /* Set a slightly darker border color on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    /* Add a subtle box shadow on hover */
+  }
+</style>
+
+<section class="py-5 text-center container"
+          style="background-image: url('{% static 'assets/img/title.jpg' %}');
+          background-size: 100% 100%;
+          background-position: center;
+          background-repeat: no-repeat;">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-bold text-white">Beam Gallery</h1>
+      <p class="lead text-white">
+        これは懐中電灯のビームショット写真のギャラリーです。
+        お気軽にビームショット写真を投稿してください。
+      </p>
+      <p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'photo:post' %}"
+            class="btn btn-gentle my-2">投稿する</a>
+        <a href="{% url 'account:logout' %}"
+            class="btn btn-gentle my-2">ログアウト</a>
+
+        {% else %}
+        <a href="{% url 'account:signup' %}"
+            class="btn btn-gentle my-2">今すぐサインアップ</a>
+        <a href="{% url 'account:login' %}"
+            class="btn btn-gentle my-2">登録済の方はログイン</a>
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</section>

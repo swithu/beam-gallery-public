@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+
+{% block contents %}
+  <main class="bg-light">
+    <div class="signup-container"
+            style="background: url('{% static 'assets/img/signupBG.jpg' %}') 
+            no-repeat center center fixed;
+            background-size: cover; padding: 20px;">
+      <div class="container">
+        <div class="row"
+                style="background-color: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);">
+          <div class="col offset-2">
+            <h3>サインアップ</h3>
+            <form method="post">
+              {% csrf_token %}
+              {% for field in form %}
+                <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                  {% if field.help_text %}
+                    <small style="color: grey;">{{ field.help_text }}</small>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <p style="color: red;">{{ error }}</p>
+                  {% endfor %}
+                </p>
+              {% endfor %}
+              <p style="color: red;">
+                **メールアドレスはパスワードをリセットする際に必要になりますので、
+                登録をお願いします。
+              </p>
+              <input type="submit" value="Sign up">
+            </form>
+            <br>
+            <p><a class="mr-1" href="{% url 'photo:index' %}" style="text-decoration: none;">
+              登録をやめてトップページに戻る
+            </a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

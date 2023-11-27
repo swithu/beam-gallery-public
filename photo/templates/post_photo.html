@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Post{% endblock title %}
+
+
+{% block contents %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col offset-2">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>カテゴリ</th>
+                        <td>{{ form.category }}</td>
+                    </tr>
+                    <tr>
+                        <th>タイトル</th>
+                        <td>{{ form.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>コメント</th>
+                        <td>{{ form.comment }}</td>
+                    </tr>
+                    <tr>
+                        <th>画像1</th>
+                        <td>{{ form.image1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>画像2</th>
+                        <td>{{ form.image2 }}</td>
+                    </tr>
+                    <tr>
+                        <th>画像3</th>
+                        <td>{{ form.image3 }}</td>
+                    </tr>
+                    <tr>
+                        <th>タグ1</th>
+                        <td>{{ form.tag1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>タグ2</th>
+                        <td>{{ form.tag2 }}</td>
+                    </tr>
+                    <tr>
+                        <th>タグ3</th>
+                        <td>{{ form.tag3 }}</td>
+                    </tr>
+                    <tr>
+                        <th>タグ4</th>
+                        <td>{{ form.tag4 }}</td>
+                    </tr>
+                    <tr>
+                        <th>タグ5</th>
+                        <td>{{ form.tag5 }}</td>
+                    </tr>
+                </table>
+                <hr>
+                <button type="submit" class="btn btn-primary">投稿する</button>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock contents %}

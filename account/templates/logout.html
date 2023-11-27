@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Log Out{% endblock%}
+
+    {% block contents %}
+    <div class="container">
+        <div class="row">
+            <div class="col offset-4 py-4">
+            
+            <h3>ログアウトしました</h3>
+            <br>
+            <p><a class="mr-1" href="{% url 'photo:index' %}" style="text-decoration: none;">
+                ホームページへ</a></p>
+    {% endblock %}

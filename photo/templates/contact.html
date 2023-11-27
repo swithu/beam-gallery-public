@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Me{% endblock %}
+
+<!-- Main Content-->
+{% block contents %}
+<main class="bg-light">
+    <div class="container pp-section">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+
+                {% if messages %}
+                <div class="alert alert-info mt-4">
+                    <ul class="list-unstyled" style="list-style: none; margin: 0;">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                            {{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+
+                <div class="card p-4 shadow-sm" style="border-radius: 15px;">
+                    <strong>連絡を取りたいですか？
+                        以下のフォームに記入してメッセージを送信してください。
+                        できるだけ早くご連絡します。</strong>
+                </div>
+
+                <div class="my-5">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <br>
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
